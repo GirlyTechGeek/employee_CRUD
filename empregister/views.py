@@ -3,6 +3,16 @@ from .forms import EmployeeForm
 from .models import Employee
 
 # Create your views here.
+def home_view(request,*args, **kwargs):
+    return render(request, "empregister/login.html")
+
+def login(request):
+    context = {'login': Employee.objects.all()}
+    return render(request, "empregister/login.html", context)
+
+def dashboard(request):
+    context = {'dashboard': Employee.objects.all()}
+    return render(request, "empregister/dashboard.html", context)
 
 def employee_list(request):
     context = {'employee_list': Employee.objects.all()}

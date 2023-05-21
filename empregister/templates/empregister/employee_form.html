@@ -1,8 +1,11 @@
 {% extends "empregister/index.html" %}
 {% load crispy_forms_tags %}
 
-
 {% block content %}
+<div class="text-center">
+    <h1 class="display-4">Create Employee</h1>
+<hr class="my-4" style="width: 50%;">
+</div>
 <form action="" method="post" autocomplete="off">
     {% csrf_token %}
     {{form.fullname|as_crispy_field}}
@@ -17,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <button type="submit" class="btn btn-success btn-block btn-lg"><i class="fas fa-database"></i>
+            <button type="submit" class="btn btn-primary btn-block btn-lg"><i class="fas fa-database"></i>
                 Submit</button>
         </div>
         <div class="col-md-4">
