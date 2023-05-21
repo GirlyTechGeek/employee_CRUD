@@ -1,5 +1,14 @@
 version: '3.3'
 services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    depends_on:
+      - postgredb
   postgredb:
     container_name: postgredb
     image: postgres
