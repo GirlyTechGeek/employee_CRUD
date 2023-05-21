@@ -6,9 +6,6 @@ from .models import Employee
 def home_view(request,*args, **kwargs):
     return render(request, "empregister/login.html")
 
-def login(request):
-    context = {'login': Employee.objects.all()}
-    return render(request, "empregister/login.html", context)
 
 def dashboard(request):
     context = {'dashboard': Employee.objects.all()}
