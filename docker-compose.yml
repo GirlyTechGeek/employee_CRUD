@@ -1,5 +1,18 @@
 version: '3.3'
 services:
+  postgredb:
+    container_name: postgredb
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: postgres
+        - "POSTGRES_HOST_AUTH_METHOD=trust"
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "8001:5432"
+ 
   web:
     build: .
     ports:
@@ -7,22 +20,6 @@ services:
     command: python3 manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
-    depends_on:
-      - postgredb
-  postgredb:
-    container_name: postgredb
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: example
-    volumes:
-      - ./data:/var/lib/postgresql/data
-    ports:
-      - 5432:5432
-    expose:
-      - 5432
+    links:
+      - "postgredb:database"
       
-
-networks:
-  default:
-    name: postgre-service_default
